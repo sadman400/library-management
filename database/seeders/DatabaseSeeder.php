@@ -13,11 +13,20 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
-
+        // Create a default admin user
         User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+            'name' => 'Admin User',
+            'email' => 'admin@library.com',
+        ]);
+        
+        // Call seeders in order of dependencies
+        $this->call([
+            CategorySeeder::class,
+            BookSeeder::class,
+            UsertypeSeeder::class,
+            MemberSeeder::class,
+            BookIssuanceDetailSeeder::class,
+            BookReturnDetailSeeder::class,
         ]);
     }
 }
