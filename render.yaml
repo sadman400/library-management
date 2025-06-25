@@ -1,0 +1,46 @@
+services:
+  - type: web
+    name: library-management
+    env: php
+    buildCommand: composer install --no-interaction --prefer-dist --optimize-autoloader --no-dev && php artisan config:cache && php artisan route:cache && php artisan view:cache
+    startCommand: heroku-php-apache2 public/
+    envVars:
+      - key: APP_ENV
+        value: production
+      - key: APP_DEBUG
+        value: false
+      - key: APP_KEY
+        fromDatabase:
+          name: library-db
+          property: app_key
+      - key: DB_CONNECTION
+        value: pgsql
+      - key: DB_HOST
+        fromService:
+          type: pserv
+          name: library-db
+          property: host
+      - key: DB_PORT
+        fromService:
+          type: pserv
+          name: library-db
+          property: port
+      - key: DB_DATABASE
+        fromService:
+          type: pserv
+          name: library-db
+          property: database
+      - key: DB_USERNAME
+        fromService:
+          type: pserv
+          name: library-db
+          property: username
+      - key: DB_PASSWORD
+        fromService:
+          type: pserv
+          name: library-db
+          property: password
+
+databases:
+  - name: library-db
+    ipAllowList: []
