@@ -7,10 +7,11 @@ use App\Http\Controllers\MemberController;
 use App\Http\Controllers\UsertypeController;
 use App\Http\Controllers\BookIssuanceDetailController;
 use App\Http\Controllers\BookReturnDetailController;
+use App\Http\Controllers\DashboardController;
 
-Route::get('/', function () {
-    return redirect()->route('books.index');
-});
+// Dashboard route as the default landing page
+Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
 
 // Resource routes for all controllers
 Route::resource('categories', CategoryController::class);

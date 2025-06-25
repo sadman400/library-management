@@ -25,18 +25,18 @@
                                 <td>{{ $usertype->id }}</td>
                                 <td>{{ $usertype->borrowertype }}</td>
                                 <td>
-                                    <div class="btn-group" role="group">
-                                        <a href="{{ route('usertypes.show', $usertype->id) }}" class="btn btn-info btn-sm">
-                                            <i class="fas fa-eye"></i> View
+                                    <div class="d-flex gap-2">
+                                        <a href="{{ route('usertypes.show', $usertype->id) }}" class="btn btn-outline-primary btn-sm rounded-pill px-3" data-bs-toggle="tooltip" title="View details">
+                                            <i class="fas fa-eye"></i>
                                         </a>
-                                        <a href="{{ route('usertypes.edit', $usertype->id) }}" class="btn btn-warning btn-sm">
-                                            <i class="fas fa-edit"></i> Edit
+                                        <a href="{{ route('usertypes.edit', $usertype->id) }}" class="btn btn-outline-secondary btn-sm rounded-pill px-3" data-bs-toggle="tooltip" title="Edit user type">
+                                            <i class="fas fa-edit"></i>
                                         </a>
                                         <form action="{{ route('usertypes.destroy', $usertype->id) }}" method="POST" class="d-inline" onsubmit="return confirm('Are you sure you want to delete this user type?');">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="btn btn-danger btn-sm">
-                                                <i class="fas fa-trash"></i> Delete
+                                            <button type="submit" class="btn btn-outline-danger btn-sm rounded-pill px-3" data-bs-toggle="tooltip" title="Delete user type">
+                                                <i class="fas fa-trash"></i>
                                             </button>
                                         </form>
                                     </div>

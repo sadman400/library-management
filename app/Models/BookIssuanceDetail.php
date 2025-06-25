@@ -16,6 +16,7 @@ class BookIssuanceDetail extends Model
     
     protected $fillable = [
         'member_id',
+        'book_id',
         'date_borrow',
         'due_date',
     ];
@@ -31,6 +32,14 @@ class BookIssuanceDetail extends Model
     public function member(): BelongsTo
     {
         return $this->belongsTo(Member::class, 'member_id', 'member_id');
+    }
+    
+    /**
+     * Get the book that is issued.
+     */
+    public function book(): BelongsTo
+    {
+        return $this->belongsTo(Book::class, 'book_id', 'book_id');
     }
     
     /**
